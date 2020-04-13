@@ -28,13 +28,23 @@
             </el-button>
             <el-button
                     class="btn-add"
+                    type="primary"
                     style="margin-right: 10px"
-                    @click="getList()"
+                    @click="handleSave()"
                     size="mini">
-                重置列表
+                存储至硬盘
             </el-button>
             <el-button
                     class="btn-add"
+                    type="primary"
+                    style="margin-right: 10px"
+                    @click="handleLoad()"
+                    size="mini">
+                从硬盘加载
+            </el-button>
+            <el-button
+                    class="btn-add"
+                    type="success"
                     style="margin-right: 10px"
                     @click="handleNode()"
                     size="mini">
@@ -42,10 +52,35 @@
             </el-button>
             <el-button
                     class="btn-add"
+                    type="success"
                     style="margin-right: 10px"
                     @click="handleSuperNode()"
                     size="mini">
                 成为超级节点
+            </el-button>
+            <el-button
+                    class="btn-add"
+                    type="success"
+                    style="margin-right: 10px"
+                    @click="handleUpdate()"
+                    size="mini">
+                更新
+            </el-button>
+            <el-button
+                    class="btn-add"
+                    type="success"
+                    style="margin-right: 10px"
+                    @click="handleUpdatePartly()"
+                    size="mini">
+                增量更新
+            </el-button>
+            <el-button
+                    class="btn-add"
+                    type="info"
+                    style="margin-right: 10px"
+                    @click="getList()"
+                    size="mini">
+                重置列表
             </el-button>
         </el-card>
         <div class="table-container">
@@ -158,8 +193,10 @@
         node,
         searchBlockChain,
         superNode,
+        update,
     } from "@/api/blockchain";
     import {formatDate} from '@/utils/date';
+    import {loadBlockChain, saveBlockChain, updatePartly} from "../../api/blockchain";
 
     export default {
         name: "blockChainView",
@@ -376,7 +413,7 @@
                         } else {
                             this.$message({
                                 message: response.data.info,
-                                type: "success"
+                                type: "warning"
                             })
                         }
                         this.getList();
@@ -397,13 +434,77 @@
                         } else {
                             this.$message({
                                 message: response.data.info,
-                                type: "success"
+                                type: "warning"
                             })
                         }
                     });
                     this.getList();
                 });
-            }
+            },
+            handleSave() {
+                saveBlockChain().then(response => {
+                    if (response.data.status === "200") {
+                        this.$message({
+                            message: response.data.message,
+                            type: "success"
+                        })
+                    } else {
+                        this.$message({
+                            message: response.data.info,
+                            type: "warning"
+                        })
+                    }
+                })
+            },
+            handleLoad() {
+                loadBlockChain().then(response => {
+                    if (response.data.status === "200") {
+                        this.$message({
+                            message: response.data.message,
+                            type: "success"
+                        })
+                    } else {
+                        this.$message({
+                            message: response.data.info,
+                            type: "warning"
+                        })
+                    }
+                    this.getList();
+                });
+            },
+            handleUpdate() {
+                update().then(response => {
+                    if (response.data.status === "200") {
+                        this.$message({
+                            message: response.data.message,
+                            type: "success"
+                        })
+                    } else {
+                        this.$message({
+                            message: response.data.info,
+                            type: "warning"
+                        })
+                    }
+                    this.getList();
+
+                });
+            },
+            handleUpdatePartly() {
+                updatePartly().then(response => {
+                    if (response.data.status === "200") {
+                        this.$message({
+                            message: response.data.message,
+                            type: "success"
+                        })
+                    } else {
+                        this.$message({
+                            message: response.data.info,
+                            type: "warning"
+                        })
+                    }
+                    this.getList();
+                });
+            },
         },
         filters: {
             formatTime(time) {
@@ -416,7 +517,7 @@
 <style scoped>
     .app-container {
         margin-top: 40px;
-        margin-left: 200px;
-        margin-right: 200px;
+        margin-left: 160px;
+        margin-right: 160px;
     }
 </style>

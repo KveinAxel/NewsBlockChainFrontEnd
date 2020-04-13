@@ -28,7 +28,6 @@ export function listBlockChain(params) {
     })
 }
 
-
 // 查询文章
 export function searchBlockChain(params) {
     return request({
@@ -65,10 +64,46 @@ export function node(params) {
     })
 }
 
-// 获取注册成为普通节点
+// 获取注册成为超级节点
 export function superNode(params) {
     return request({
         url: '/local/superNode',
+        method: 'get',
+        params: params
+    })
+}
+
+// 从硬盘加载区块链
+export function loadBlockChain(params) {
+    return request({
+        url: '/local/load',
+        method: 'get',
+        params: params
+    })
+}
+
+// 将区块链存储至硬盘
+export function saveBlockChain(params) {
+    return request({
+        url: '/local/save',
+        method: 'get',
+        params: params
+    })
+}
+
+// 更新区块链
+export function update(params) {
+    return request({
+        url: '/local/update',
+        method: 'get',
+        params: params
+    })
+}
+
+// 增量更新区块链
+export function updatePartly(params) {
+    return request({
+        url: '/local/updatePartly',
         method: 'get',
         params: params
     })
