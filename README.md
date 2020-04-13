@@ -22,7 +22,6 @@
 
 1. 安装node.js
 
-<<<<<<< HEAD
 2. `git clone git@github.com:KveinAxel/NewsBlockChainFrontEnd.git`
 
 3. `cd NewsBlockChainFrontEnd\`
