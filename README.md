@@ -37,11 +37,11 @@
 
 [NewsBlockChain](https://github.com/KveinAxel/NewsBlockChain)
 
-[NewsBlockChainFrontEnd](https://github.com/KveinAxel/NewsBlockChainFrontEnd)
+[NewsBlockChainDNS](https://github.com/KveinAxel/NewsBlockChainDNS)
 
 ## 感谢
 
-[fastapi](https://github.com/tiangolo/fastapi)
+[vue.js](https://github.com/vuejs/vue)
 
 ## 版权说明
 
